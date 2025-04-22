@@ -61,9 +61,35 @@ class ListaActivity : AppCompatActivity() {
                     if (cursor.getBlob(5) != null) {
                         x = cursor.getBlob(5)
                     }
+
+                    val estudante = DataSet(
+                        estudanteId,
+                        nome,
+                        endereco,
+                        classe,
+                        idade,
+                        x
+                    )
+                    itemArraylist.add(estudante)
+
+
+
                 }
 
             }
+
+            cursor.close()
+
+            // Agora aplica os dados no adapter
+            val adapter = itemAdapter(itemArraylist)
+            binding.itemLista.adapter = adapter
+
+            // (opcional) clique nos itens
+            adapter.setOnItemClickListener(object : itemAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    Toast.makeText(context, "Clicou em: ${itemArraylist[position].nomeEstudante}", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
 
         catch (ex: Exception){

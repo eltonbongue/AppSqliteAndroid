@@ -54,6 +54,9 @@ class Estudante : AppCompatActivity() {
 
         }
 
+        showData()
+
+
     }
 
     fun uploadEstudanteImage(view: View) {
@@ -131,13 +134,7 @@ class Estudante : AppCompatActivity() {
     }
 
 
-    fun  delData(view: View){
-        val values = ContentValues()
-        values.put("studentId", sId)
-        db!!.delete("estudante", "studentId = $sId ", null)
-        Toast.makeText(this,"Dala deletado" , Toast.LENGTH_SHORT).show()
 
-    }
 
     private fun insertData() {
         val estudanteName = binding.editNome.text.toString()
@@ -178,6 +175,15 @@ class Estudante : AppCompatActivity() {
                 Toast.makeText(this, "insert: " + ex.message.toString(), Toast.LENGTH_LONG).show()
             }
         }
+
+    }
+
+    fun  delData(view: View){
+        val values = ContentValues()
+        values.put("studentId", sId)
+        db!!.delete("estudante", "studentId = $sId ", null)
+        Toast.makeText(this,"Dado deletado" , Toast.LENGTH_SHORT).show()
+        finish()
 
     }
 
