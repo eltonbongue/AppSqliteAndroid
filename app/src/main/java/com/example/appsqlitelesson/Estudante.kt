@@ -46,9 +46,9 @@ class Estudante : AppCompatActivity() {
         sId = i.getIntExtra("sid", 0)
 
         when(msg) {
-            "add" -> binding.buttonSalvarDados.text = "Inserir dado"
+            "add" -> binding.buttonSalvarDados.text = "Inserir dados"
             "edit" -> {
-                binding.buttonSalvarDados.text = "actualizar dado"
+                binding.buttonSalvarDados.text = "actualizar dados"
                 binding.btnDel.visibility = View.VISIBLE
 
                 showData()
