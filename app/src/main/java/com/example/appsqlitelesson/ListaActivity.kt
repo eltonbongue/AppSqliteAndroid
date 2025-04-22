@@ -40,7 +40,6 @@ class ListaActivity : AppCompatActivity() {
         binding.itemLista.layoutManager = LinearLayoutManager(this)
         binding.itemLista.hasFixedSize()
         itemArraylist = arrayListOf()
-
         showDataList()
     }
 
@@ -85,7 +84,6 @@ class ListaActivity : AppCompatActivity() {
             val adapter = itemAdapter(itemArraylist)
             binding.itemLista.adapter = adapter
 
-            // (opcional) clique nos itens
             adapter.setOnItemClickListener(object : itemAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
                     val itemPos = itemArraylist[position]

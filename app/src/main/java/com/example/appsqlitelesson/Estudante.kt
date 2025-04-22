@@ -49,7 +49,7 @@ class Estudante : AppCompatActivity() {
             "add" -> binding.buttonSalvarDados.text = "Inserir dado"
             "edit" -> {
                 binding.buttonSalvarDados.text = "actualizar dado"
-              //  binding.buttonActualizarImagem.visibility = View.VISIBLE
+                binding.btnDel.visibility = View.VISIBLE
 
                 showData()
 

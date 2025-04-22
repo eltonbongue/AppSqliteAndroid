@@ -128,18 +128,20 @@
         android:text="actualizar Imagem"
         app:layout_constraintBottom_toTopOf="@+id/buttonSalvarDados"
         app:layout_constraintEnd_toEndOf="@+id/imageViewEstudante"
+        app:layout_constraintHorizontal_bias="0.559"
         app:layout_constraintStart_toStartOf="@+id/imageViewEstudante"
         app:layout_constraintTop_toBottomOf="@+id/imageViewEstudante" />
 
     <Button
         android:id="@+id/buttonSalvarDados"
-        android:layout_width="335dp"
-        android:layout_height="43dp"
+        android:layout_width="255dp"
+        android:layout_height="46dp"
         android:layout_marginTop="5dp"
         android:onClick="btnClick"
         android:text="Salvar dados"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonActualizarImagem" />
 
@@ -166,4 +168,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editClasse"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <Button
+        android:id="@+id/btnDel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="delData"
+        android:text="Apagar Dados"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonSalvarDados"
+        app:layout_constraintTop_toBottomOf="@+id/buttonActualizarImagem" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
