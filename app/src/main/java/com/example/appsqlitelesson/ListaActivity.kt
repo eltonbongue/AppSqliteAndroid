@@ -1,6 +1,7 @@
 package com.example.appsqlitelesson
 
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.widget.Toast
@@ -87,7 +88,13 @@ class ListaActivity : AppCompatActivity() {
             // (opcional) clique nos itens
             adapter.setOnItemClickListener(object : itemAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
-                    Toast.makeText(context, "Clicou em: ${itemArraylist[position].nomeEstudante}", Toast.LENGTH_SHORT).show()
+                    val itemPos = itemArraylist[position]
+                    val sId = itemPos.studentId
+                    val  intent = Intent(context, Estudante::class.java)
+                    intent.putExtra("msg", "edit")
+                    intent.putExtra("sid", sId)
+                    startActivity(intent)
+                    finish()
                 }
             })
         }
