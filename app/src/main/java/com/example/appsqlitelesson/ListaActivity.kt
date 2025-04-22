@@ -1,6 +1,7 @@
 package com.example.appsqlitelesson
 
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.widget.Toast
@@ -39,7 +40,6 @@ class ListaActivity : AppCompatActivity() {
         binding.itemLista.layoutManager = LinearLayoutManager(this)
         binding.itemLista.hasFixedSize()
         itemArraylist = arrayListOf()
-
         showDataList()
     }
 
@@ -61,9 +61,40 @@ class ListaActivity : AppCompatActivity() {
                     if (cursor.getBlob(5) != null) {
                         x = cursor.getBlob(5)
                     }
+
+                    val estudante = DataSet(
+                        estudanteId,
+                        nome,
+                        endereco,
+                        classe,
+                        idade,
+                        x
+                    )
+                    itemArraylist.add(estudante)
+
+
+
                 }
 
             }
+
+            cursor.close()
+
+            // Agora aplica os dados no adapter
+            val adapter = itemAdapter(itemArraylist)
+            binding.itemLista.adapter = adapter
+
+            adapter.setOnItemClickListener(object : itemAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val itemPos = itemArraylist[position]
+                    val sId = itemPos.studentId
+                    val  intent = Intent(context, Estudante::class.java)
+                    intent.putExtra("msg", "edit")
+                    intent.putExtra("sid", sId)
+                    startActivity(intent)
+                    finish()
+                }
+            })
         }
 
         catch (ex: Exception){

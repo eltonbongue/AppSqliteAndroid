@@ -46,13 +46,20 @@ class Estudante : AppCompatActivity() {
         sId = i.getIntExtra("sid", 0)
 
         when(msg) {
-            "add" -> binding.buttonSalvarDados.text = "Inserir dado"
+            "add" -> binding.buttonSalvarDados.text = "Inserir dados"
             "edit" -> {
-                binding.buttonActualizarImagem.text = "actualizar dado"
-                binding.buttonActualizarImagem.visibility = View.VISIBLE
+                binding.buttonSalvarDados.text = "actualizar dados"
+                binding.btnDel.visibility = View.VISIBLE
+
+                showData()
+
             }
 
         }
+
+
+
+
 
     }
 
@@ -126,18 +133,13 @@ class Estudante : AppCompatActivity() {
     fun btnClick(view: View) {
         when(msg){
             "add" -> insertData()
+            "edit" -> updateData()
         }
 
     }
 
 
-    fun  delData(view: View){
-        val values = ContentValues()
-        values.put("studentId", sId)
-        db!!.delete("estudante", "studentId = $sId ", null)
-        Toast.makeText(this,"Dala deletado" , Toast.LENGTH_SHORT).show()
 
-    }
 
     private fun insertData() {
         val estudanteName = binding.editNome.text.toString()
@@ -178,6 +180,57 @@ class Estudante : AppCompatActivity() {
                 Toast.makeText(this, "insert: " + ex.message.toString(), Toast.LENGTH_LONG).show()
             }
         }
+
+    }
+
+    private fun updateData() {
+        val estudanteName = binding.editNome.text.toString()
+        val estudanteEndereco = binding.editEndereco.text.toString()
+        val estudante_class = binding.editClasse.text.toString()
+        val estudante_idade = binding.editIdade.text.toString()
+
+
+        if (binding.editNome.text.toString().isEmpty()) {
+
+            Toast.makeText(this, "digite o nome do estudante", Toast.LENGTH_SHORT).show()
+            binding.editNome.requestFocus()
+
+        }
+
+        else if (binding.editClasse.text.toString().isEmpty()) {
+
+            Toast.makeText(this, "digite o nome da classe", Toast.LENGTH_SHORT).show()
+            binding.editClasse.requestFocus()
+        }
+
+        else{
+
+            try{
+                val  values = ContentValues()
+                values.put("nomeEstudante", estudanteName)
+                values.put("endereco", estudanteEndereco)
+                values.put("classe", estudante_class)
+                values.put("idade", estudante_idade)
+                values.put("estudantePhoto", imageByteArray)
+                db!!.update("estudante", values, "studentId = $sId", null)
+                Toast.makeText(this,"Dado actualizado:" , Toast.LENGTH_SHORT).show()
+                clr()
+            }
+
+            catch(ex:Exception) {
+
+                Toast.makeText(this, "insert: " + ex.message.toString(), Toast.LENGTH_LONG).show()
+            }
+        }
+
+    }
+
+    fun  delData(view: View){
+        val values = ContentValues()
+        values.put("studentId", sId)
+        db!!.delete("estudante", "studentId = $sId ", null)
+        Toast.makeText(this,"Dado deletado" , Toast.LENGTH_SHORT).show()
+        finish()
 
     }
 

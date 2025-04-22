@@ -1,5 +1,6 @@
 package com.example.appsqlitelesson
 
+import android.content.ContentValues
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteDatabase.*
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
         createDatabase()
         createTables()
+
     }
 
     private fun createDatabase(){
@@ -71,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, ListaActivity::class.java)
         startActivity(intent)
     }
+
 
 
 
